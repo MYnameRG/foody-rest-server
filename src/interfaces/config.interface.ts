@@ -1,4 +1,4 @@
-export default interface Config {
+export default interface IConfig {
     port: number;
     version?: string;
     nodeEnv?: string;

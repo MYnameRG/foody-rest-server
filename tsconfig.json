@@ -116,6 +116,6 @@
     "excludeDirectories": ["**/node_modules", "_build", "temp/*"],
     "synchronousWatchDirectory": true
   },
-  "include": ["src/**/*", "environments/*"],
+  "include": ["src/**/*", "src/environments/*"],
   "exclude": ["node_modules"],
 }
