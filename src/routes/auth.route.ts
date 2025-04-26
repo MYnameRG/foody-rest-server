@@ -1,18 +1,22 @@
 import express from 'express';
+import AuthController from '../controllers/auth.controller';
 
 class AuthRoutes {
-    public router: express.IRouter;
+    private router: express.IRouter;
 
     constructor() {
         this.router = express.Router();
     }
 
-    defineRoutes = (): express.IRouter => {
-        this.router.post('/signup');
-        this.router.post('/login');
+    fetchRoutes = (): express.IRouter => {
+        return this.fetchPOSTReq();
+    }
 
+    fetchPOSTReq = (): express.IRouter => {
+        this.router.post('/signup', AuthController.registeredUser);
+        this.router.post('/login', AuthController.loggedInUser);
         return this.router;
     }
 }
 
-export default new AuthRoutes;
+export default new AuthRoutes().fetchRoutes();

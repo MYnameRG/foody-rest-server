@@ -33,7 +33,7 @@ class ApplicationServer {
     }
 
     private defineMainRoutes = () => {
-        this._appserver.use(`/api/${config.version}/auth`, AuthRoutes.defineRoutes());
+        this._appserver.use(`/api/${config.version}/auth`, AuthRoutes);
     }
 
     public start = () => {
@@ -41,7 +41,7 @@ class ApplicationServer {
         this.initMiddleware();
 
         // Define Routes
-        // this.defineTestRoutes();
+        this.defineTestRoutes();
         this.defineMainRoutes();
 
         // Global error handler (should be after routes)
