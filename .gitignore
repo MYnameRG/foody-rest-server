@@ -1,0 +1,25 @@
+# Node modules & dependencies
+node_modules/
+npm-debug.log
+package-lock.json
+yarn.lock
+.git-credentials
+
+# Logs & cache
+logs/
+*.log
+*.pid
+*.seed
+*.gz
+.cache/
+
+# Environment variables
+.env
+.env.local
+.env.production
+.env.development
+config/secrets.json
+
+# Build output
+dist/
+coverage/
