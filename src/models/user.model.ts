@@ -3,13 +3,13 @@ import { ROLES } from '../enums/roles.enum';
 
 // Schema
 const UserSchema: Schema = new Schema({
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
-    email: { type: String, required: true },
-    phone: { type: String, required: false },
-    imageURL: { type: String, required: false },
-    address: { type: String, required: true },
-    country: { type: String, required: true },
+    firstName: { type: String, required: true, default: "" },
+    lastName: { type: String, required: true, default: "" },
+    email: { type: String, required: true, default: "" },
+    phone: { type: String, required: false, default: "" },
+    imageURL: { type: String, required: false, default: "" },
+    address: { type: String, required: false, default: "" },
+    country: { type: String, required: false, default: "" },
     role: {
         type: Number,
         required: true,
