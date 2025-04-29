@@ -3,6 +3,7 @@ import IResponse from './interfaces/response.interface';
 import config from './config/config';
 import AuthRoutes from './routes/auth.route';
 import { errorHandler } from './middlewares/error-handler.middleware';
+import DatabaseServer from './database';
 
 class ApplicationServer {
     private _appserver: express.Express;
@@ -36,6 +37,11 @@ class ApplicationServer {
         this._appserver.use(`/api/${config.version}/auth`, AuthRoutes);
     }
 
+    private connectToMongoDB = () => {
+        const dbserver = new DatabaseServer();
+        dbserver.connect();
+    };
+
     public start = () => {
         // Initialize Middleware Globally
         this.initMiddleware();
@@ -49,6 +55,7 @@ class ApplicationServer {
 
         // Start server to listen
         this._appserver.listen(config.port, () => {
+            this.connectToMongoDB();
             console.log(`Server running on port ${config.port}`);
         });
     }
