@@ -1,20 +1,20 @@
 import { NextFunction, Request, Response } from 'express';
 import IResponse from './../../../core/interfaces/response.interface';
 import UserService from '../services/user.service';
+import { BaseController } from '../../../core/bases/controllers.base';
+import { IUser } from '../interfaces/user.interface';
 
-class AuthController {
+class AuthController extends BaseController<IUser> {
     private userService: UserService;
 
     constructor() {
+        super();
         this.userService = new UserService();
     }
 
     public register = (req: Request, res: Response<IResponse>, next: NextFunction) => {
         try {
-            const user = req.body;
-            if (user) {
-                throw new Error("");
-            }
+            
 
         } catch (error) {
             next(error);

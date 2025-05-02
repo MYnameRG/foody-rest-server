@@ -1,21 +1,20 @@
 import { NextFunction, Response } from 'express';
-import IResponse from '../interfaces/response.interface';
 
-export class BaseController {
+export abstract class BaseController<T> {
   constructor() {}
 
-  protected sendSuccess(res: Response<IResponse>, data: any, message: string, status: number, next: NextFunction): Response {
-    // next({ data, status, message, isSuccess: true });
-    return res.status(status).json({ data, message, isSuccess: true });
+  protected sendSuccess(res: Response, data: [T], message: string, status: number, next: NextFunction): void {
+    res.payload = { data, status, message, isSuccess: true };
+    next();
   }
 
-  protected sendWarning(res: Response<IResponse>, data: any, message: string, status: number, next: NextFunction): Response {
-    return res.status(status).json({ data, message, isSuccess: true });
-    // next({ data, message, isSuccess: true });
+  protected sendWarning(res: Response, data: [T], message: string, status: number, next: NextFunction): void {
+    res.payload = { data, status, message, isSuccess: true };
+    next();
   }
 
-  protected sendError(res: Response<IResponse>, error: any, status: number, next: NextFunction): Response {
-    // next({ status, error, isSuccess: false });
-    return res.status(status).json({ error, isSuccess: false })
+  protected sendError(res: Response, error: Error, status: number, message = '', next: NextFunction): void {
+    res.payload = { status, error, message, isSuccess: false };
+    next();
   }
 }

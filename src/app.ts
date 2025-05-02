@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import IResponse from './core/interfaces/response.interface';
 import config from './shared/config/app.config';
-import AuthRoutes from './modules/auth/routes/auth.route';
+import AuthRoutes from './modules/user/routes/auth.route';
 import { responseHandler } from './shared/middlewares/response-handler.middleware';
 import DatabaseServer from './infrastructure/databases/mongo.database';
 
@@ -51,7 +51,7 @@ class ApplicationServer {
         this.defineMainRoutes();
 
         // Global error handler (should be after routes)
-        // this.initAfterRouteMiddlewares();
+        this.initAfterRouteMiddlewares();
 
         // Start server to listen
         this._appserver.listen(config.port, () => {
