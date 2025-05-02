@@ -1,9 +1,9 @@
 import express, { Request, Response } from 'express';
-import IResponse from './interfaces/response.interface';
-import config from './config/config';
-import AuthRoutes from './routes/auth.route';
-import { errorHandler } from './middlewares/error-handler.middleware';
-import DatabaseServer from './database';
+import IResponse from './core/interfaces/response.interface';
+import config from './shared/config/app.config';
+import AuthRoutes from './modules/auth/routes/auth.route';
+import { errorHandler } from './shared/middlewares/error-handler.middleware';
+import DatabaseServer from './infrastructure/databases/mongo.database';
 
 class ApplicationServer {
     private _appserver: express.Express;

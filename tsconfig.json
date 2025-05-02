@@ -116,6 +116,6 @@
     "excludeDirectories": ["**/node_modules", "_build", "temp/*"],
     "synchronousWatchDirectory": true
   },
-  "include": ["src/**/*", "src/environments/*"],
+  "include": ["src/**/*", "src/shared/environments/*", "src/app.ts", "src/server.ts", "src/infrastructure/databases/mongo.database.ts"],
   "exclude": ["node_modules"],
 }

@@ -1,4 +1,4 @@
-import IConfig from '../interfaces/config.interface';
+import IConfig from '../../core/interfaces/config.interface';
 import NODE_ENV from '../environments/environment';
 
 const config: IConfig = {

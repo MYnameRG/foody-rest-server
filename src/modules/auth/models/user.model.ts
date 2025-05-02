@@ -1,11 +1,11 @@
 import { model, Schema } from 'mongoose';
-import { ROLES } from '../enums/roles.enum';
+import { ROLES } from '../../../core/enums/roles.enum';
 
 // Schema
 const UserSchema: Schema = new Schema({
     firstName: { type: String, required: true, default: "" },
     lastName: { type: String, required: true, default: "" },
-    email: { type: String, required: true, default: "" },
+    email: { type: String, required: true, unique: true, default: "" },
     phone: { type: String, required: false, default: "" },
     imageURL: { type: String, required: false, default: "" },
     address: { type: String, required: false, default: "" },

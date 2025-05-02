@@ -13,8 +13,8 @@ class AuthRoutes {
     }
 
     fetchPOSTReq = (): express.IRouter => {
-        this.router.post('/signup', AuthController.registeredUser);
-        this.router.post('/login', AuthController.loggedInUser);
+        this.router.post('/signup', AuthController.register);
+        this.router.post('/login', AuthController.loggedIn);
         return this.router;
     }
 }
