@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import IResponse from '../interfaces/response.interface';
+import IResponse from './../../../core/interfaces/response.interface';
 import UserService from '../services/user.service';
 
 class AuthController {

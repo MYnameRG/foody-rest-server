@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import IResponse from './core/interfaces/response.interface';
 import config from './shared/config/app.config';
 import AuthRoutes from './modules/auth/routes/auth.route';
-import { errorHandler } from './shared/middlewares/error-handler.middleware';
+import { responseHandler } from './shared/middlewares/response-handler.middleware';
 import DatabaseServer from './infrastructure/databases/mongo.database';
 
 class ApplicationServer {
@@ -12,13 +12,13 @@ class ApplicationServer {
         this._appserver = express();
     }
 
-    private initMiddleware = () => {
+    private initBeforeRouteMiddlewares = () => {
         this._appserver.use(express.json());
         this._appserver.use(express.urlencoded({ extended: false }));
     }
 
-    private initErrorhandler = () => {
-        this._appserver.use(errorHandler);
+    private initAfterRouteMiddlewares = () => {
+        this._appserver.use(responseHandler);
     }
 
     public defineTestRoutes = () => {
@@ -44,14 +44,14 @@ class ApplicationServer {
 
     public start = () => {
         // Initialize Middleware Globally
-        this.initMiddleware();
+        this.initBeforeRouteMiddlewares();
 
         // Define Routes
         this.defineTestRoutes();
         this.defineMainRoutes();
 
         // Global error handler (should be after routes)
-        this.initErrorhandler();
+        // this.initAfterRouteMiddlewares();
 
         // Start server to listen
         this._appserver.listen(config.port, () => {
