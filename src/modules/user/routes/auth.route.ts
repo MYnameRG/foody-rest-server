@@ -1,5 +1,7 @@
 import express from 'express';
 import AuthController from '../controllers/auth.controller';
+import { validate } from '../../../shared/middlewares/validate.middleware';
+import { bodySchema } from '../dtos/user.dto';
 
 class AuthRoutes {
     private router: express.IRouter;
@@ -14,7 +16,8 @@ class AuthRoutes {
 
     fetchPOSTReq = (): express.IRouter => {
         this.router.post('/signup', AuthController.register);
-        this.router.post('/login', AuthController.loggedIn);
+        this.router.post('/login', validate({ body: bodySchema }), AuthController.loggedIn);
+
         return this.router;
     }
 }
