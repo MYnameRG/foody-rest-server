@@ -4,6 +4,7 @@ npm-debug.log
 package-lock.json
 yarn.lock
 .git-credentials
+.vscode
 
 # Logs & cache
 logs/
